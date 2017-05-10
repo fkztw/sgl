@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+import configparser
 import json
 import time
 
@@ -58,9 +59,12 @@ def search_houses():
 
 
 def main():
+    config = configparser.ConfigParser()
+    config.read(SETTINGS_PATH)
+
     while True:
         search_houses()
-        time.sleep(60)
+        time.sleep(int(config['default']['parse_interval_in_seconds']))
 
 
 if __name__ == "__main__":
