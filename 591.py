@@ -30,11 +30,16 @@ def get_links():
     return tuple(houses)
 
 
-while True:
-    houses = get_links()
-    for h in houses:
-        if h in cache:
-            break
-        logger.info('new house: {}'.format(h))
-    cache.update(houses)
-    time.sleep(10)
+def main():
+    while True:
+        houses = get_links()
+        for h in houses:
+            if h in cache:
+                break
+            logger.info('new house: {}'.format(h))
+        cache.update(houses)
+        time.sleep(10)
+
+
+if __name__ == "__main__":
+    main()
