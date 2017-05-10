@@ -24,14 +24,18 @@ def get_links():
     return tuple(houses)
 
 
+def search_houses():
+    houses = get_links()
+    for h in houses:
+        if h in cache:
+            break
+        logger.info('new house: {}'.format(h))
+    cache.update(houses)
+
+
 def main():
     while True:
-        houses = get_links()
-        for h in houses:
-            if h in cache:
-                break
-            logger.info('new house: {}'.format(h))
-        cache.update(houses)
+        search_houses()
         time.sleep(10)
 
 
