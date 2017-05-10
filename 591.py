@@ -19,6 +19,7 @@ url = 'https://rent.591.com.tw/new/?kind=1&region=1&rentprice=0,26000&patternMor
 link_pattern = re.compile('//rent.591.com.*')
 cache = set()
 
+
 def get_links():
     logger.info('requests 591 ...')
     response = requests.get(url)
@@ -27,6 +28,7 @@ def get_links():
     houses = map(lambda x: x.find(href=link_pattern), houses)
     houses = map(lambda x: 'https:' + x.get('href').strip(), houses)
     return tuple(houses)
+
 
 while True:
     houses = get_links()
