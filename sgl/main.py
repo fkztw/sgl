@@ -45,7 +45,7 @@ def log_house_info(house):
     logger.info("坪數：{} 坪".format(house['area']))
     logger.info("格局：{}".format(house['layout']))
     logger.info("更新時間：{}".format(time.ctime(house['refreshtime'])))
-    logger.info("=" * 80)
+    logger.info("\n")
 
 
 def search_houses():
