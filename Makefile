@@ -1,5 +1,5 @@
 install-requirements:
-	pip install -r requirements.txt
+	pip3 install -r requirements.txt
 
 run:
-	python sgl/main.py
+	python3 sgl/main.py
