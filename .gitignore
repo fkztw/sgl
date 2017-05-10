@@ -90,3 +90,6 @@ ENV/
 
 # Vim swap files
 .*.sw*
+
+# Private
+settings.ini
