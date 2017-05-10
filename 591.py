@@ -2,18 +2,12 @@
 
 import re
 import time
-import logging
 
 import requests
 import bs4
 
+from logger import logger
 
-logger = logging.getLogger('591')
-log_formatter = logging.Formatter('%(asctime)s|%(message)s')
-stream_handler = logging.StreamHandler()
-stream_handler.setFormatter(log_formatter)
-logger.setLevel(logging.DEBUG)
-logger.addHandler(stream_handler)
 
 url = 'https://rent.591.com.tw/new/?kind=1&region=1&rentprice=0,26000&patternMore=2&option=cold&hasimg=1&not_cover=1&order=posttime&orderType=desc'
 link_pattern = re.compile('//rent.591.com.*')
