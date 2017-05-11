@@ -52,6 +52,7 @@ def search_houses():
     houses = get_houses()
     for house in houses:
         if house['post_id'] in cache:
+            logger.info(time.ctime(house['refreshtime']))
             break
 
         log_house_info(house)
