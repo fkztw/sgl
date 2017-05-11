@@ -28,7 +28,7 @@ def get_houses():
         houses = data.get('data', [])
         logger.info(len(houses))
 
-        for house in reversed(houses):
+        for house in houses:
             yield house
 
 
