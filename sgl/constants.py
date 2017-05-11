@@ -5,7 +5,7 @@ CONDITIONS = {
     'type': '1',
     'kind': '1',
     'searchtype': '1',
-    'region': '1',
+    'regionid': '1',
     'rentprice': '0,26000',
     'patternMore': '2',
     'option': 'cold',
