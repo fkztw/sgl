@@ -2,4 +2,4 @@ install-requirements:
 	pip3 install -r requirements.txt
 
 run:
-	python3 sgl/main.py
+	python3 5g1/main.py
