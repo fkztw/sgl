@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 
 import configparser
-import json
 import time
 
 import requests
@@ -20,10 +19,12 @@ def get_houses():
     response = requests.get(API_URL, params=CONDITIONS, headers=HEADERS)
 
     try:
-        data = response_json['data']
+        data = response.json()['data']
     except KeyError:
-        logger.error("Cannnot get data from response_json")
+        logger.debug("response.json()['data']: {}".format(response.json()['data']))
+        logger.error("Cannnot get data from response.json['data']")
     except:
+        logger.debug("response: {}".format(response.text))
         raise
     else:
         houses = data.get('data', [])
