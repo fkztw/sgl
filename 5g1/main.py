@@ -23,7 +23,7 @@ def get_houses():
     except KeyError:
         logger.debug("response.json()['data']: {}".format(response.json()['data']))
         logger.error("Cannnot get data from response.json['data']")
-    except:
+    except Exception:
         logger.debug("response: {}".format(response.text))
         raise
     else:
