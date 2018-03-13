@@ -7,7 +7,9 @@ import time
 import requests
 
 from logger import logger
-from constants import API_URL, CONDITIONS, WEB_URL_FORMAT_STR, SETTINGS_PATH
+from constants import (
+    API_URL, CONDITIONS, WEB_URL_FORMAT_STR, SETTINGS_PATH, HEADERS,
+)
 
 
 cache = set()
@@ -15,8 +17,7 @@ cache = set()
 
 def get_houses():
     logger.info('requests 591 API...')
-    response = requests.get(API_URL, params=CONDITIONS)
-    response_json = json.loads(response.text)
+    response = requests.get(API_URL, params=CONDITIONS, headers=HEADERS)
 
     try:
         data = response_json['data']
