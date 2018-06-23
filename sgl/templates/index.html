@@ -6,6 +6,15 @@
             <title>{{ title }}</title>
     </head>
     <body>
-    <!-- Form for query. Send post request to /map-->
+	<form method="POST" action="/map">
+		{{ form.csrf_token }}
+        <br />
+
+        {{ form.regionid.label }}
+        {{ form.regionid }}
+        <br />
+
+        <input type="submit" value="查詢">
+	</form>
     </body>
 </html>
