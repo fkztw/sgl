@@ -39,3 +39,16 @@ class QueryForm(FlaskForm):
     #     choices=[(None, '請選擇')],
     #     validators=[DataRequired()],
     # )
+
+    kind = SelectField(
+        '類型',
+        choices=[
+            ('0', '不限'),
+            ('1', '整層住家'),
+            ('2', '獨立套房'),
+            ('3', '分租套房'),
+            ('4', '雅房'),
+            ('24', '其他'),
+        ],
+        validators=[DataRequired()],
+    )
