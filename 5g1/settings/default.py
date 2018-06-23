@@ -1,0 +1,3 @@
+import os
+
+PARSE_INTERVAL_IN_SECONDS = os.environ.get('PARSE_INTERVAL_IN_SECONDS') or 1800

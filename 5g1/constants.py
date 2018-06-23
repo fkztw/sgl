@@ -23,5 +23,3 @@ CONDITIONS = {
 }
 
 WEB_URL_FORMAT_STR = "https://rent.591.com.tw/rent-detail-{}.html"
-
-SETTINGS_PATH = "./settings.ini"
