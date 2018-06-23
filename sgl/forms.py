@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, IntegerField
+from wtforms import SelectField, IntegerField, SelectMultipleField
 from wtforms.validators import DataRequired
 
 
@@ -75,4 +75,14 @@ class QueryForm(FlaskForm):
         '最高坪數',
         default=0,
         validators=[DataRequired()],
+    )
+
+    shape = SelectMultipleField(
+        '房屋型態',
+        choices=[
+            ('1', '公寓'),
+            ('2', '電梯大樓'),
+            ('3', '透天厝'),
+            ('4', '別墅'),
+        ],
     )
