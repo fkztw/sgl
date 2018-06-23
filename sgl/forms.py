@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField
+from wtforms import SelectField, IntegerField
 from wtforms.validators import DataRequired
 
 
@@ -50,5 +50,17 @@ class QueryForm(FlaskForm):
             ('4', '雅房'),
             ('24', '其他'),
         ],
+        validators=[DataRequired()],
+    )
+
+    rentprice_min = IntegerField(
+        '最低租金',
+        default=0,
+        validators=[DataRequired()],
+    )
+
+    rentprice_max = IntegerField(
+        '最高租金',
+        default=0,
         validators=[DataRequired()],
     )
