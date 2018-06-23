@@ -5,8 +5,8 @@ import time
 import requests
 
 from logger import logger
-from constants import API_URL, CONDITIONS, WEB_URL_FORMAT_STR, HEADERS
-from settings import default as config
+from constants import API_URL, CONDITIONS, WEB_URL_FORMAT_STR, HEADERS, \
+    PARSE_INTERVAL_IN_SECONDS
 
 
 cache = set()
@@ -61,7 +61,7 @@ def search_houses():
 def main():
     while True:
         search_houses()
-        time.sleep(config.PARSE_INTERVAL_IN_SECONDS)
+        time.sleep(PARSE_INTERVAL_IN_SECONDS)
 
 
 if __name__ == "__main__":
