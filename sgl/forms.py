@@ -64,3 +64,15 @@ class QueryForm(FlaskForm):
         default=0,
         validators=[DataRequired()],
     )
+
+    area_min = IntegerField(
+        '最低坪數',
+        default=0,
+        validators=[DataRequired()],
+    )
+
+    area_max = IntegerField(
+        '最高坪數',
+        default=0,
+        validators=[DataRequired()],
+    )
