@@ -77,6 +77,18 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
+    patternMore = SelectMultipleField(
+        '格局',
+        choices=[
+            ('0', '不限'),
+            ('1', '1 房'),
+            ('2', '2 房'),
+            ('3', '3 房'),
+            ('4', '4 房'),
+            ('5', '5 房以上'),
+        ],
+    )
+
     shape = SelectMultipleField(
         '房屋型態',
         choices=[
