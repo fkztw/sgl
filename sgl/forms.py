@@ -1,10 +1,10 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, IntegerField, SelectMultipleField, SubmitField
+from wtforms import fields
 from wtforms.validators import DataRequired
 
 
 class QueryForm(FlaskForm):
-    regionid = SelectField(
+    regionid = fields.SelectField(
         '縣市',
         choices=[
             ('1', '台北市'),
@@ -40,7 +40,7 @@ class QueryForm(FlaskForm):
     #     validators=[DataRequired()],
     # )
 
-    kind = SelectField(
+    kind = fields.SelectField(
         '類型',
         choices=[
             ('0', '不限'),
@@ -53,18 +53,18 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
-    rentprice_min = IntegerField(
+    rentprice_min = fields.IntegerField(
         '最低租金',
         default=0,
         validators=[DataRequired()],
     )
-    rentprice_max = IntegerField(
+    rentprice_max = fields.IntegerField(
         '最高租金',
         default=0,
         validators=[DataRequired()],
     )
 
-    patternMore = SelectMultipleField(
+    patternMore = fields.SelectMultipleField(
         '格局',
         choices=[
             ('0', '不限'),
@@ -76,18 +76,18 @@ class QueryForm(FlaskForm):
         ],
     )
 
-    area_min = IntegerField(
+    area_min = fields.IntegerField(
         '最低坪數',
         default=0,
         validators=[DataRequired()],
     )
-    area_max = IntegerField(
+    area_max = fields.IntegerField(
         '最高坪數',
         default=0,
         validators=[DataRequired()],
     )
 
-    shape = SelectMultipleField(
+    shape = fields.SelectMultipleField(
         '房屋型態',
         choices=[
             ('1', '公寓'),
@@ -97,18 +97,18 @@ class QueryForm(FlaskForm):
         ],
     )
 
-    floor_min = IntegerField(
+    floor_min = fields.IntegerField(
         '最低樓層',
         default=0,
         validators=[DataRequired()],
     )
-    floor_max = IntegerField(
+    floor_max = fields.IntegerField(
         '最高樓層',
         default=0,
         validators=[DataRequired()],
     )
 
-    sex = SelectField(
+    sex = fields.SelectField(
         '性別',
         choices=[
             ('0', '不限'),
@@ -118,7 +118,7 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
-    option = SelectMultipleField(
+    option = fields.SelectMultipleField(
         '提供設備',
         choices=[
             ('tv', '電視'),
@@ -135,7 +135,7 @@ class QueryForm(FlaskForm):
         ],
     )
 
-    other = SelectMultipleField(
+    other = fields.SelectMultipleField(
         '其他條件',
         choices=[
             ('cartplace', '有車位'),
@@ -148,4 +148,4 @@ class QueryForm(FlaskForm):
         ],
     )
 
-    submit = SubmitField('查詢')
+    submit = fields.SubmitField('查詢')
