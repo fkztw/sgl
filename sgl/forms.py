@@ -96,3 +96,14 @@ class QueryForm(FlaskForm):
             ('4', '別墅'),
         ],
     )
+
+    floor_min = IntegerField(
+        '最低樓層',
+        default=0,
+        validators=[DataRequired()],
+    )
+    floor_max = IntegerField(
+        '最高樓層',
+        default=0,
+        validators=[DataRequired()],
+    )
