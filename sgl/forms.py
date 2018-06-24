@@ -58,21 +58,8 @@ class QueryForm(FlaskForm):
         default=0,
         validators=[DataRequired()],
     )
-
     rentprice_max = IntegerField(
         '最高租金',
-        default=0,
-        validators=[DataRequired()],
-    )
-
-    area_min = IntegerField(
-        '最低坪數',
-        default=0,
-        validators=[DataRequired()],
-    )
-
-    area_max = IntegerField(
-        '最高坪數',
         default=0,
         validators=[DataRequired()],
     )
@@ -87,6 +74,17 @@ class QueryForm(FlaskForm):
             ('4', '4 房'),
             ('5', '5 房以上'),
         ],
+    )
+
+    area_min = IntegerField(
+        '最低坪數',
+        default=0,
+        validators=[DataRequired()],
+    )
+    area_max = IntegerField(
+        '最高坪數',
+        default=0,
+        validators=[DataRequired()],
     )
 
     shape = SelectMultipleField(
