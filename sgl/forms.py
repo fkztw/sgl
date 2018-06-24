@@ -166,4 +166,13 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
+    role = fields.SelectField(
+        '是否限定屋主刊登',
+        choices=[
+            ('0', '不限'),
+            ('1', '是'),
+        ],
+        validators=[DataRequired()],
+    )
+
     submit = fields.SubmitField('查詢')
