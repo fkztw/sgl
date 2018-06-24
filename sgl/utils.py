@@ -13,6 +13,7 @@ def _build_infobox(house):
 
     return infobox
 
+
 def get_markers(houses):
     markers = []
     for house in houses:
@@ -24,10 +25,24 @@ def get_markers(houses):
 
     return markers
 
+
 def get_center_spot(houses):
     lat_sum, lng_sum = Decimal(0), Decimal(0)
+    valid_count = 0
     for house in houses:
-        lat_sum += house['lat']
-        lng_sum += house['lng']
+        lat, lng = house['lat'], house['lng']
 
-    return lat_sum/len(houses), lng_sum/len(houses)
+        # Reasonable location in Taiwan
+        if 22 <= lat <= 25 and 120 <= lng <= 122:
+            lat_sum += lat
+            lng_sum += lng
+            valid_count += 1
+
+    if valid_count == 0:
+        # Center of Taiwan
+        return 23.97565, 120.97388
+
+    lat_avg = lat_sum/valid_count
+    lng_avg = lng_sum/valid_count
+
+    return lat_avg, lng_avg
