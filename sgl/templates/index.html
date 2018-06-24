@@ -7,33 +7,15 @@
     </head>
     <body>
 	<form method="POST" action="/map">
-        <p>
 		{{ form.csrf_token }}
-        <br />
-
-        {{ form.regionid.label }}
-        {{ form.regionid }}
-        <br />
-
-        {{ form.kind.label }}
-        {{ form.kind }}
-        <br />
-
-        {{ form.rentprice_min.label }} {{ form.rentprice_min }} ~ {{ form.rentprice_max.label }} {{ form.rentprice_max }}
-        <br />
-
-        {{ form.patternMore.label }}
-        {{ form.patternMore }}
-        <br />
-
-        {{ form.area_min.label }} {{ form.area_min }} ~ {{ form.area_max.label }} {{ form.area_max }}
-        <br />
-
-        {{ form.shape.label }}
-        {{ form.shape }}
-        <br />
-        </p>
-
+        <ul>
+            <li> {{ form.regionid.label }} {{ form.regionid }} </li><br/>
+            <li> {{ form.kind.label }} {{ form.kind }} </li><br/>
+            <li> {{ form.rentprice_min.label }} {{ form.rentprice_min }} ~ {{ form.rentprice_max.label }} {{ form.rentprice_max }} </li><br/>
+            <li> {{ form.patternMore.label }} {{ form.patternMore }} </li><br/>
+            <li> {{ form.area_min.label }} {{ form.area_min }} ~ {{ form.area_max.label }} {{ form.area_max }} </li><br/>
+            <li> {{ form.shape.label }} {{ form.shape }} </li><br/>
+        </ul>
         <input type="submit" value="查詢">
 	</form>
     </body>
