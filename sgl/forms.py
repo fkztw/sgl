@@ -60,12 +60,12 @@ class QueryForm(FlaskForm):
     )
     rentprice_max = fields.IntegerField(
         '最高租金',
-        default=0,
-        validators=[DataRequired()],
+        default=None,
     )
 
     patternMore = fields.SelectMultipleField(
         '格局',
+        default='0',
         choices=[
             ('0', '不限'),
             ('1', '1 房'),
@@ -83,13 +83,14 @@ class QueryForm(FlaskForm):
     )
     area_max = fields.IntegerField(
         '最高坪數',
-        default=0,
-        validators=[DataRequired()],
+        default=None,
     )
 
     shape = fields.SelectMultipleField(
         '房屋型態',
+        default='0',
         choices=[
+            ('0', '不限'),
             ('1', '公寓'),
             ('2', '電梯大樓'),
             ('3', '透天厝'),
@@ -120,6 +121,7 @@ class QueryForm(FlaskForm):
 
     option = fields.SelectMultipleField(
         '提供設備',
+        default=None,
         choices=[
             ('tv', '電視'),
             ('cold', '冷氣'),
@@ -137,6 +139,7 @@ class QueryForm(FlaskForm):
 
     other = fields.SelectMultipleField(
         '其他條件',
+        default=None,
         choices=[
             ('cartplace', '有車位'),
             ('lift', '有電梯'),
@@ -154,7 +157,6 @@ class QueryForm(FlaskForm):
             ('0', '不限'),
             ('1', '是'),
         ],
-        validators=[DataRequired()],
     )
 
     not_cover = fields.SelectField(
@@ -163,7 +165,6 @@ class QueryForm(FlaskForm):
             ('0', '不限'),
             ('1', '是'),
         ],
-        validators=[DataRequired()],
     )
 
     role = fields.SelectField(
@@ -172,7 +173,6 @@ class QueryForm(FlaskForm):
             ('0', '不限'),
             ('1', '是'),
         ],
-        validators=[DataRequired()],
     )
 
     submit = fields.SubmitField('查詢')
