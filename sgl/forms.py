@@ -148,4 +148,13 @@ class QueryForm(FlaskForm):
         ],
     )
 
+    hasimg = fields.SelectField(
+        '是否有房屋圖片',
+        choices=[
+            ('0', '不限'),
+            ('1', '是'),
+        ],
+        validators=[DataRequired()],
+    )
+
     submit = fields.SubmitField('查詢')
