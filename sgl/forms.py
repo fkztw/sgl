@@ -107,3 +107,13 @@ class QueryForm(FlaskForm):
         default=0,
         validators=[DataRequired()],
     )
+
+    sex = SelectField(
+        '性別',
+        choices=[
+            ('0', '不限'),
+            ('1', '男'),
+            ('2', '女'),
+        ],
+        validators=[DataRequired()],
+    )
