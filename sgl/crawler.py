@@ -9,6 +9,7 @@ def get_houses(payload):
         'price': <str>,
         'area': <str>,
         'kind': <str>,
+        'update_time': <datetime>,
         'images': [
             <str>,
             <str>,
