@@ -18,7 +18,7 @@ def index():
 
     return render_template(
         'index.html',
-        title=current_app.config.get('INDEX_PAGE_TITLE'),
+        title=current_app.config.get('PAGE_TITLE'),
         form=form,
     )
 
@@ -50,6 +50,6 @@ def query_map():
 
     return render_template(
         'map.html',
-        title=current_app.config.get('MAP_PAGE_TITLE'),
+        title=current_app.config.get('PAGE_TITLE'),
         google_map=google_map,
     )

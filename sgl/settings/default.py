@@ -10,5 +10,4 @@ WTF_CSRF_SECRET_KEY = os.environ.get('WTF_CSRF_SECRET_KEY')
 SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # sgl settings
-INDEX_PAGE_TITLE = os.environ.get('INDEX_PAGE_TITLE')
-MAP_PAGE_TITLE = os.environ.get('MAP_PAGE_TITLE')
+PAGE_TITLE = os.environ.get('PAGE_TITLE')
