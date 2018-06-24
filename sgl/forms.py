@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import SelectField, IntegerField, SelectMultipleField
+from wtforms import SelectField, IntegerField, SelectMultipleField, SubmitField
 from wtforms.validators import DataRequired
 
 
@@ -147,3 +147,5 @@ class QueryForm(FlaskForm):
             ('lease', '可短期租賃'),
         ],
     )
+
+    submit = SubmitField('查詢')
