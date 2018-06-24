@@ -40,8 +40,7 @@ def query_map():
 
     # TODO
     # Get centered object lat and lng
-    # lat, lng = utils.get_center_spot(houses)
-    lat, lng = 25.0610031, 121.5406966
+    lat, lng = utils.get_center_spot(houses)
 
     google_map = Map(
         identifier='sgl_map',
