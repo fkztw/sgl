@@ -3,6 +3,7 @@ from flask import Flask
 from sgl.plugins.google_maps import GOOGLE_MAPS
 
 from sgl import logger
+from sgl.converters import JsonEncoder
 
 
 logger = logger
@@ -11,6 +12,8 @@ logger = logger
 def create_app():
     app = Flask(__name__)
     app.config.from_object('sgl.settings.default')
+
+    app.json_encoder = JsonEncoder
 
     GOOGLE_MAPS.init_app(app)
 
