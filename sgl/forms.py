@@ -117,3 +117,20 @@ class QueryForm(FlaskForm):
         ],
         validators=[DataRequired()],
     )
+
+    option = SelectMultipleField(
+        '提供設備',
+        choices=[
+            ('tv', '電視'),
+            ('cold', '冷氣'),
+            ('icebox', '冰箱'),
+            ('hotwater', '熱水器'),
+            ('naturalgas', '天然瓦斯'),
+            ('four', '第四台'),
+            ('broadband', '網路'),
+            ('washer', '洗衣機'),
+            ('bed', '床'),
+            ('wardrobe', '衣櫃'),
+            ('sofa', '沙發'),
+        ],
+    )
