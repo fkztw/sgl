@@ -6,6 +6,8 @@ from flask import (
 )
 from flask_googlemaps import Map
 
+from sgl import crawler
+from sgl import utils
 from sgl.forms import QueryForm
 
 
@@ -25,18 +27,21 @@ def index():
 
 @BP.route("/map", methods=["POST"])
 def query_map():
-    # TODO
     payload = request.json or request.form
-    print(payload)
-    # Get rental locations
+    payload = payload.to_dict()
 
     # TODO
-    # Add all locations's lat and lng into markers
-    markers = None
+    # Get rental locations
+    houses = crawler.get_houses(payload)
+
+    # TODO
+    # Add all locations's lat, lng and info into markers
+    markers = utils.get_markers(houses)
 
     # TODO
     # Get centered object lat and lng
-    lat, lng = 25.04, 121.32
+    # lat, lng = utils.get_center_spot(houses)
+    lat, lng = 25.0610031, 121.5406966
 
     google_map = Map(
         identifier='sgl_map',
