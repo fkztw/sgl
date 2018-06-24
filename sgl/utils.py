@@ -3,7 +3,7 @@ from decimal import Decimal
 
 def _build_infobox(house):
     infobox = ""
-    infobox += "<h2><a href={url}>{name}</a></h2><br/>\n".format(
+    infobox += "<h2><a target='_blank' href={url}>{name}</a></h2><br/>\n".format(
         name=house['name'],
         url=house['url'],
     )
