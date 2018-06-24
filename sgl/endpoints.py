@@ -50,7 +50,6 @@ def query_map():
         style='height:80%;width:80%;margin:1%;',
         language='zh-tw',
         region='TW',
-        zoom=15,
     )
 
     return render_template(
