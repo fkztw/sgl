@@ -157,4 +157,13 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
+    not_cover = fields.SelectField(
+        '是否排除頂樓加蓋',
+        choices=[
+            ('0', '不限'),
+            ('1', '是'),
+        ],
+        validators=[DataRequired()],
+    )
+
     submit = fields.SubmitField('查詢')
