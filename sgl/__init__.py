@@ -2,6 +2,11 @@ from flask import Flask
 
 from sgl.plugins.google_maps import GOOGLE_MAPS
 
+from sgl import logger
+
+
+logger = logger
+
 
 def create_app():
     app = Flask(__name__)
