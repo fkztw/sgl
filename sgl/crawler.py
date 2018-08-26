@@ -117,7 +117,7 @@ def _reconstruct_houses(houses):
 
     start = time.time()
     new_houses = []
-    with concurrent.futures.ProcessPoolExecutor() as executor:
+    with concurrent.futures.ProcessPoolExecutor(max_workers=len(houses)) as executor:
         futures = [executor.submit(_reconstruct_house, house) for house in houses]
         for future in concurrent.futures.as_completed(futures):
             try:
