@@ -1,3 +1,5 @@
+#!/usr/bin/env python36
+
 from decimal import Decimal
 
 import time
@@ -22,11 +24,35 @@ HEADERS = {
 
 
 def _reconstruct_payload(payload):
-    # TODO
-    new_payload = {
-        'is_new_list': '1',
-        'regionid': payload['regionid'],
-    }
+    new_payload = {'is_new_list': '1'}
+
+    if payload.get('regionid'):
+        new_payload['regionid'] = ','.join(payload['regionid'])
+
+    if payload.get('rentprice_min') and payload.get('rentprice_max'):
+        new_payload['rentprice'] = ','.join(payload['rentprice_min'] + payload['rentprice_max'])
+
+    if payload.get('area_min') and payload.get('area_max'):
+        new_payload['area'] = ','.join(payload['area_min'] + payload['area_max'])
+
+    if payload.get('patternMore'):
+        new_payload['patternMore'] = ','.join(payload['patternMore'])
+
+    if payload.get('hasimg'):
+        new_payload['hasimg'] = ','.join(payload['hasimg'])
+
+    if payload.get('not_cover'):
+        new_payload['not_cover'] = ','.join(payload['not_cover'])
+
+    if payload.get('role'):
+        new_payload['role'] = ','.join(payload['role'])
+
+    if payload.get('option'):
+        new_payload['option'] = ','.join(payload['option'])
+
+    if payload.get('other'):
+        new_payload['other'] = ','.join(payload['other'])
+
     return new_payload
 
 
@@ -94,6 +120,7 @@ def _reconstruct_houses(houses):
 
 def get_houses(payload):
     payload = _reconstruct_payload(payload)
+    current_app.logger.info("payload: {}".format(payload))
     response = requests.get(API_URL, params=payload, headers=HEADERS)
 
     try:

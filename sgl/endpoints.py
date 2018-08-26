@@ -28,7 +28,8 @@ def index():
 @BP.route("/map", methods=["POST"])
 def query_map():
     payload = request.json or request.form
-    payload = payload.to_dict()
+    payload = payload.to_dict(flat=False)
+    print(payload)
 
     # TODO
     # Get rental locations

@@ -1,6 +1,11 @@
 from flask_wtf import FlaskForm
-from wtforms import fields
+from wtforms import fields, widgets
 from wtforms.validators import DataRequired
+
+
+class MultiCheckboxField(fields.SelectMultipleField):
+    widget = widgets.ListWidget(prefix_label=False)
+    option_widget = widgets.CheckboxInput()
 
 
 class QueryForm(FlaskForm):
@@ -60,7 +65,7 @@ class QueryForm(FlaskForm):
     )
     rentprice_max = fields.IntegerField(
         '最高租金',
-        default=None,
+        default='',
     )
 
     patternMore = fields.SelectMultipleField(
@@ -83,7 +88,7 @@ class QueryForm(FlaskForm):
     )
     area_max = fields.IntegerField(
         '最高坪數',
-        default=None,
+        default='',
     )
 
     shape = fields.SelectMultipleField(
@@ -119,9 +124,9 @@ class QueryForm(FlaskForm):
         validators=[DataRequired()],
     )
 
-    option = fields.SelectMultipleField(
+    option = MultiCheckboxField(
         '提供設備',
-        default=None,
+        default=[],
         choices=[
             ('tv', '電視'),
             ('cold', '冷氣'),
@@ -137,9 +142,9 @@ class QueryForm(FlaskForm):
         ],
     )
 
-    other = fields.SelectMultipleField(
+    other = MultiCheckboxField(
         '其他條件',
-        default=None,
+        default=[],
         choices=[
             ('cartplace', '有車位'),
             ('lift', '有電梯'),
