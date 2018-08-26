@@ -33,7 +33,7 @@ def get_center_spot(houses):
         lat, lng = house['lat'], house['lng']
 
         # Reasonable location in Taiwan
-        if 22 <= lat <= 25 and 120 <= lng <= 122:
+        if 21 <= lat <= 26 and 119 <= lng <= 122:
             lat_sum += lat
             lng_sum += lng
             valid_count += 1
