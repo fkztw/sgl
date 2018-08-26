@@ -1,7 +1,7 @@
 #!/usr/bin/env python36
 
 from decimal import Decimal
-
+import concurrent.futures
 import time
 
 import requests
@@ -68,6 +68,34 @@ def _get_house_lat_and_lng(house):
     return Decimal(lat), Decimal(lng)
 
 
+def _reconstruct_house(house):
+    new_house = {}
+
+    new_house['name'] = "{}-{}-{}".format(
+        house['region_name'],
+        house['section_name'],
+        house['fulladdress'],
+    )
+
+    new_house['url'] = "{}".format(WEB_URL_FORMAT_STR.format(house['post_id']))
+
+    new_house['price'] = "{} {}".format(house['price'], house['unit'])
+
+    new_house['area'] = "{} 坪".format(house['area'])
+
+    new_house['layout'] = "{}".format(house['layout'])
+
+    new_house['kind'] = "{}".format(house['kind_name'])
+
+    new_house['update_time'] = "{}".format(time.ctime(house['refreshtime']))
+
+    lat, lng = _get_house_lat_and_lng(house)
+    new_house['lat'] = lat
+    new_house['lng'] = lng
+
+    return new_house
+
+
 def _reconstruct_houses(houses):
     '''
     house = {
@@ -87,33 +115,19 @@ def _reconstruct_houses(houses):
     }
     '''
 
+    start = time.time()
     new_houses = []
-    for house in houses:
-        new_house = {}
-
-        new_house['name'] = "{}-{}-{}".format(
-            house['region_name'],
-            house['section_name'],
-            house['fulladdress'],
-        )
-
-        new_house['url'] = "{}".format(WEB_URL_FORMAT_STR.format(house['post_id']))
-
-        new_house['price'] = "{} {}".format(house['price'], house['unit'])
-
-        new_house['area'] = "{} 坪".format(house['area'])
-
-        new_house['layout'] = "{}".format(house['layout'])
-
-        new_house['kind'] = "{}".format(house['kind_name'])
-
-        new_house['update_time'] = "{}".format(time.ctime(house['refreshtime']))
-
-        lat, lng = _get_house_lat_and_lng(house)
-        new_house['lat'] = lat
-        new_house['lng'] = lng
-
-        new_houses.append(new_house)
+    with concurrent.futures.ProcessPoolExecutor() as executor:
+        futures = [executor.submit(_reconstruct_house, house) for house in houses]
+        for future in concurrent.futures.as_completed(futures):
+            try:
+                new_house = future.result()
+            except Exception as e:
+                current_app.logger.exeception(e)
+            else:
+                new_houses.append(new_house)
+    end = time.time()
+    current_app.logger.info(f"_reconstruct_houses() spent: {end - start} seconds")
 
     return new_houses
 
