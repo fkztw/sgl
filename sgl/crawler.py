@@ -117,6 +117,7 @@ def _reconstruct_houses(houses):
         'lng': <decimal>,
     }
     '''
+    current_app.logger.info(f"total houses: {len(houses)}")
 
     start = time.time()
     new_houses = []
