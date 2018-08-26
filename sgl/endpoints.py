@@ -31,12 +31,8 @@ def query_map():
     payload = payload.to_dict(flat=False)
     print(payload)
 
-    # TODO
-    # Get rental locations
     houses = crawler.get_houses(payload)
 
-    # TODO
-    # Add all locations's lat, lng and info into markers
     markers = utils.get_markers(houses)
 
     # TODO
