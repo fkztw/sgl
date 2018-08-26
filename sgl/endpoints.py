@@ -35,8 +35,6 @@ def query_map():
 
     markers = utils.get_markers(houses)
 
-    # TODO
-    # Get centered object lat and lng
     lat, lng = utils.get_center_spot(houses)
 
     google_map = Map(
