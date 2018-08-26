@@ -24,7 +24,10 @@ HEADERS = {
 
 
 def _reconstruct_payload(payload):
-    new_payload = {'is_new_list': '1'}
+    new_payload = {}
+
+    if payload.get('is_new_list'):
+        new_payload['is_new_list'] = ','.join(payload['is_new_list'])
 
     if payload.get('regionid'):
         new_payload['regionid'] = ','.join(payload['regionid'])

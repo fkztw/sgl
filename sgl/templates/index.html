@@ -9,6 +9,7 @@
 	<form method="POST" action="/map">
 		{{ form.csrf_token }}
         <ul>
+            <li> {{ form.is_new_list.label }} {{ form.is_new_list }} </li><br/>
             <li> {{ form.regionid.label }} {{ form.regionid }} </li><br/>
             <li> {{ form.kind.label }} {{ form.kind }} </li><br/>
             <li> {{ form.rentprice_min.label }} {{ form.rentprice_min }} ~ {{ form.rentprice_max.label }} {{ form.rentprice_max }} </li><br/>

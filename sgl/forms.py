@@ -9,6 +9,15 @@ class MultiCheckboxField(fields.SelectMultipleField):
 
 
 class QueryForm(FlaskForm):
+    is_new_list = fields.SelectField(
+        '最新刊登',
+        default='1',
+        choices=[
+            ('0', '否'),
+            ('1', '是'),
+        ],
+        validators=[DataRequired()],
+    )
     regionid = fields.SelectField(
         '縣市',
         choices=[
