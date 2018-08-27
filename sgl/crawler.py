@@ -72,6 +72,23 @@ def _get_house_lat_and_lng(house):
 
 
 def _reconstruct_house(house):
+    '''
+    house = {
+        'name': <str>,
+        'url': <str>,
+        'price': <str>,
+        'area': <str>,
+        'kind': <str>,
+        'update_time': <datetime>,
+        'images': [
+            <str>,
+            <str>,
+            ...
+        ],
+        'lat': <decimal>,
+        'lng': <decimal>,
+    }
+    '''
     new_house = {}
 
     new_house['name'] = "{}-{}-{}".format(
@@ -100,23 +117,6 @@ def _reconstruct_house(house):
 
 
 def _reconstruct_houses(houses):
-    '''
-    house = {
-        'name': <str>,
-        'url': <str>,
-        'price': <str>,
-        'area': <str>,
-        'kind': <str>,
-        'update_time': <datetime>,
-        'images': [
-            <str>,
-            <str>,
-            ...
-        ],
-        'lat': <decimal>,
-        'lng': <decimal>,
-    }
-    '''
     current_app.logger.info(f"total houses: {len(houses)}")
 
     start = time.time()
