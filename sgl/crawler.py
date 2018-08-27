@@ -89,6 +89,8 @@ def _reconstruct_house(house):
         'lng': <decimal>,
     }
     '''
+
+    # TODO: Save house images urls
     new_house = {}
 
     new_house['name'] = "{}-{}-{}".format(

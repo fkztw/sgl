@@ -47,6 +47,7 @@ def query_map():
         region='TW',
     )
 
+    # TODO: Show house images
     return render_template(
         'map.html',
         title=current_app.config.get('PAGE_TITLE'),
