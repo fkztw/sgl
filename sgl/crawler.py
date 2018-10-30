@@ -1,4 +1,4 @@
-#!/usr/bin/env python36
+#!/usr/bin/env python3
 
 from decimal import Decimal
 import concurrent.futures
