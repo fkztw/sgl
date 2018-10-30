@@ -14,9 +14,13 @@ A simple crawler for <https://www.591.com.tw/>
 
 - **Require** `pipenv`: `pip install pipenv`
 - `make install`
-- `env GOOGLEMAPS_KEY=xxxx make run-server`
 
+### CLI version
 
-### Google Maps API key
+- `make run-cli`
 
-[You need to get a Google Maps API key for using it](https://developers.google.com/maps/documentation/javascript/get-api-key)
+### Web version
+
+- [You need to get a Google Maps API key for using it](https://developers.google.com/maps/documentation/javascript/get-api-key)
+- `env GOOGLEMAPS_KEY="xxxx" make run-server`
+    - Change xxxx to the API key you got
