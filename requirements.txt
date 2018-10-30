@@ -1,4 +1,4 @@
 beautifulsoup4==4.6.0
 Flask-GoogleMaps==0.2.6
 Flask-WTF==0.14.2
-requests==2.19.1
+requests==2.20.0
