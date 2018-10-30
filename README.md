@@ -2,7 +2,7 @@
 
 A simple crawler for <https://www.591.com.tw/>
 
-- Pure CLI version already moved to `scripts/591`
+- Pure CLI version already moved to [`scripts/591`](./scripts/591)
 - Now mainly focus on web version
     - Flask website with Docker
     - Show places on Google Map
