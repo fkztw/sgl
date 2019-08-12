@@ -3,18 +3,21 @@
 import time
 
 import requests
+from bs4 import BeautifulSoup
 
 from logger import logger
-from constants import API_URL, CONDITIONS, WEB_URL_FORMAT_STR, HEADERS, \
-    PARSE_INTERVAL_IN_SECONDS
+from constants import (
+    API_URL, ROOT_URL, CONDITIONS, WEB_URL_FORMAT_STR, HEADERS,
+    PARSE_INTERVAL_IN_SECONDS,
+)
 
 
 cache = set()
 
 
-def get_houses():
+def get_houses(session):
     logger.info('requests 591 API...')
-    response = requests.get(API_URL, params=CONDITIONS, headers=HEADERS)
+    response = session.get(API_URL, params=CONDITIONS)
 
     try:
         data = response.json()['data']
@@ -48,8 +51,8 @@ def log_house_info(house):
     logger.info("\n")
 
 
-def search_houses():
-    houses = get_houses()
+def search_houses(session):
+    houses = get_houses(session)
     for house in houses:
         if house['post_id'] in cache:
             continue
@@ -58,9 +61,24 @@ def search_houses():
         cache.update([house['post_id']])
 
 
+def set_csrf_token(session):
+    r = session.get(ROOT_URL)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    for tag in soup.select('meta'):
+        if tag.get('name', None) == 'csrf-token':
+            csrf_token = tag.get('content')
+            session.headers = HEADERS
+            session.headers['X-CSRF-TOKEN'] = csrf_token
+    else:
+        print('No csrf-token found')
+
+
 def main():
+    session = requests.Session()
+
     while True:
-        search_houses()
+        set_csrf_token(session)
+        search_houses(session)
         time.sleep(PARSE_INTERVAL_IN_SECONDS)
 
 

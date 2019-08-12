@@ -1,3 +1,4 @@
+ROOT_URL = "https://rent.591.com.tw"
 API_URL = "https://rent.591.com.tw/home/search/rsList"
 
 HEADERS = {

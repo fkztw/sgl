@@ -138,10 +138,24 @@ def _reconstruct_houses(houses):
     return new_houses
 
 
+def _set_csrf_token(session):
+    r = session.get(ROOT_URL)
+    soup = BeautifulSoup(r.text, 'html.parser')
+    for tag in soup.select('meta'):
+        if tag.get('name', None) == 'csrf-token':
+            csrf_token = tag.get('content')
+            session.headers = HEADERS
+            session.headers['X-CSRF-TOKEN'] = csrf_token
+    else:
+        print('No csrf-token found')
+
+
 def get_houses(payload):
     payload = _reconstruct_payload(payload)
     current_app.logger.info("payload: {}".format(payload))
-    response = requests.get(API_URL, params=payload, headers=HEADERS)
+    session = requests.Session()
+    _set_csrf_token(session)
+    response = session.get(API_URL, params=payload, headers=HEADERS)
 
     try:
         data = response.json()['data']
