@@ -19,6 +19,7 @@ def get_markers(houses):
     markers = []
     for house in houses:
         marker = {}
+        marker['title'] = house['name']
         marker['lat'] = house['lat']
         marker['lng'] = house['lng']
         marker['infobox'] = _build_infobox(house)
