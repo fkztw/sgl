@@ -7,6 +7,7 @@ def _build_infobox(house):
         name=house['name'],
         url=house['url'],
     )
+    infobox += "<img src='{}'><br/><br/>\n".format(house['cover_image_url'])
     infobox += "租金：{}<br/>\n".format(house['price'])
     infobox += "坪數：{}<br/>\n".format(house['area'])
     infobox += "更新時間：{}<br/>\n".format(house['update_time'])

@@ -101,6 +101,8 @@ def _reconstruct_house(house):
 
     new_house['url'] = "{}".format(WEB_URL_FORMAT_STR.format(house['post_id']))
 
+    new_house['cover_image_url'] = house['cover']
+
     new_house['price'] = "{} {}".format(house['price'], house['unit'])
 
     new_house['area'] = "{} 坪".format(house['area'])
