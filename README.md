@@ -12,7 +12,7 @@ A simple crawler for <https://rent.591.com.tw/>
 
 ## Development
 
-- **Require** `pipenv`: `pip install pipenv`
+- **Require** `poetry`: `pip install poetry`
 - `make install`
 
 ### CLI version
