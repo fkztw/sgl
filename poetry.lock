@@ -58,14 +58,14 @@ dotenv = ["python-dotenv"]
 
 [[package]]
 category = "main"
-description = "Small extension for Flask to make using Google Maps easy"
+description = "Easy way to add GoogleMaps to Flask Applications"
 name = "flask-googlemaps"
 optional = false
-python-versions = "*"
-version = "0.2.6"
+python-versions = ">=3.6"
+version = "0.4.0"
 
 [package.dependencies]
-Flask = ">=0.10"
+flask = ">=0.10"
 
 [[package]]
 category = "main"
@@ -186,7 +186,7 @@ ipaddress = ["ipaddress"]
 locale = ["Babel (>=1.3)"]
 
 [metadata]
-content-hash = "c7a0729128a01a045d20ca9d671b6ec4ffae05c173a11417e09865da46c42daa"
+content-hash = "ab1a960912802c7aa511301e27cbbfe88373d91c883af195a8a373fe1681515f"
 python-versions = "^3.6"
 
 [metadata.files]
@@ -212,8 +212,8 @@ flask = [
     {file = "Flask-1.1.2.tar.gz", hash = "sha256:4efa1ae2d7c9865af48986de8aeb8504bf32c7f3d6fdc9353d34b21f4b127060"},
 ]
 flask-googlemaps = [
-    {file = "Flask-GoogleMaps-0.2.6.tar.gz", hash = "sha256:a3de1e5dcd652feb6d43362900a052e3d91a1a2eafb9aae98b7c533bee286fa8"},
-    {file = "Flask_GoogleMaps-0.2.6-py3-none-any.whl", hash = "sha256:ea045e06236095bf4c8da6993c2abee2878b779d2362b2ae8139f62edb618165"},
+    {file = "flask_googlemaps-0.4.0-py3-none-any.whl", hash = "sha256:ee63f71f074abf599eddaa78d7af5f8804fb1dd59bc4eee201dc0a868cd785c7"},
+    {file = "flask_googlemaps-0.4.0.tar.gz", hash = "sha256:dfd3c659d8db9917f206ce5d624e20c369f804f082c0d6dabbda8d014a8e7825"},
 ]
 flask-wtf = [
     {file = "Flask-WTF-0.14.3.tar.gz", hash = "sha256:d417e3a0008b5ba583da1763e4db0f55a1269d9dd91dcc3eb3c026d3c5dbd720"},
