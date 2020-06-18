@@ -11,7 +11,7 @@ python = "^3.6"
 beautifulsoup4 = "4.9.1"
 Flask-GoogleMaps = "0.4.0"
 Flask-WTF = "0.14.3"
-requests = "2.23.0"
+requests = "2.24.0"
 
 [tool.poetry.dev-dependencies]
 
