@@ -3,6 +3,7 @@
 {% block title %}{{ title }}{% endblock %}
 
 {% block body %}
+<div class="container-sm">
 	<form method="POST" action="/map">
 		{{ form.csrf_token }}
         <ul>
@@ -23,4 +24,5 @@
         </ul>
         {{ form.submit }}
 	</form>
+</div>
 {% endblock %}
