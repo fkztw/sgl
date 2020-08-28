@@ -2,15 +2,26 @@ from decimal import Decimal
 
 
 def _build_infobox(house):
-    infobox = ""
-    infobox += "<h2><a target='_blank' href={url}>{name}</a></h2><br/>\n".format(
-        name=house['name'],
-        url=house['url'],
-    )
-    infobox += "<img src='{}'><br/><br/>\n".format(house['cover_image_url'])
-    infobox += "租金：{}<br/>\n".format(house['price'])
-    infobox += "坪數：{}<br/>\n".format(house['area'])
-    infobox += "更新時間：{}<br/>\n".format(house['update_time'])
+    infobox = '''
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><a target="_blank" href="{}">{}</a></h5>
+    <p class="card-text">
+      <h6>租金：{}</h6>
+      <h6>坪數：{}</h6>
+      <h6>更新時間：{}</h6>
+    </p>
+  <div>
+  <img src="{}" class="card-img-bottom">
+</div>
+'''.format(
+    house['url'],
+    house['name'],
+    house['price'],
+    house['area'],
+    house['update_time'],
+    house['cover_image_url'],
+)
 
     return infobox
 
