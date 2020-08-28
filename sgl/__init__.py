@@ -1,9 +1,8 @@
 from flask import Flask
 
-from sgl.plugins.google_maps import GOOGLE_MAPS
-
 from sgl import logger
 from sgl.converters import JsonEncoder
+from sgl.plugins.google_maps import GOOGLE_MAPS
 
 
 logger = logger
