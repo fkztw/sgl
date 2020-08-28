@@ -12,7 +12,6 @@ def _build_infobox(house):
       <h6>更新時間：{}</h6>
     </p>
   <div>
-  <img src="{}" class="card-img-bottom">
 </div>
 '''.format(
     house['url'],
@@ -20,8 +19,41 @@ def _build_infobox(house):
     house['price'],
     house['area'],
     house['update_time'],
-    house['cover_image_url'],
 )
+
+    # Use Boostrap Carousel for house images preview
+    infobox += '''
+  <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+    <div class="carousel-inner">
+'''
+    for i, image_url in enumerate(house['images_urls']):
+        if i == 0:
+            infobox += '''
+      <div class="carousel-item active">
+        <img src="{}" class="d-block w-100">
+      </div>
+'''.format(image_url)
+
+        else:
+            infobox += '''
+      <div class="carousel-item">
+        <img src="{}" class="d-block w-100">
+      </div>
+'''.format(image_url)
+    else:
+        infobox += "    </div>"
+
+    infobox +='''
+  <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+    <span class="carousel-control-next-icon bg-dark" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+'''
 
     return infobox
 
