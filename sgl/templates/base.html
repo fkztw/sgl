@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+    <html>
+    <head>
+        {% block head %}
+        <title>{% block title %}{% endblock %}</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <style>
+          html, body {
+            height: 100%;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+          }
+        </style>
+
+        {% endblock %}
+    </head>
+    <body>
+        {% block body %}
+        {% endblock %}
+    </body>
+</html>

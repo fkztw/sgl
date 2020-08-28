@@ -1,22 +1,14 @@
-<!DOCTYPE html>
-    <html>
-    <head>
-        <title>{{ title }}</title>
-        <meta name="viewport" content="initial-scale=1.0">
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <style>
-          html, body {
-            height: 100%;
-            width: 100%;
-            margin: 0;
-            padding: 0;
-          }
-        </style>
+{% extends "base.html" %}
 
-        {{ google_map.js }}
-    </head>
-    <body>
-        {{ google_map.html }}
-    </body>
-</html>
+{% block title %}
+  {{ title }}
+{% endblock %}
+
+{% block head %}
+  {{ super() }}
+  {{ google_map.js }}
+{% endblock %}
+
+{% block body %}
+  {{ google_map.html }}
+{% endblock %}
