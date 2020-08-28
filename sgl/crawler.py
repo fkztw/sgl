@@ -59,9 +59,11 @@ def _reconstruct_payload(payload):
     return new_payload
 
 
-def _get_house_lat_and_lng(house):
-    target = MAP_URL_FORMAT_STR.format(house['post_id'])
-    response = requests.get(target, headers=HEADERS)
+def _get_processed_house_lat_and_lng(house):
+    response = requests.get(
+        MAP_URL_FORMAT_STR.format(house['post_id']),
+        headers=HEADERS,
+    )
     html = response.content
     soup = BeautifulSoup(html, 'html.parser')
 
@@ -69,6 +71,22 @@ def _get_house_lat_and_lng(house):
     lng = soup.find(id="lng").get('value')
 
     return Decimal(lat), Decimal(lng)
+
+
+def _get_processed_house_images_urls(house):
+    response = requests.get(
+        WEB_URL_FORMAT_STR.format(house['post_id']),
+        headers=HEADERS,
+    )
+    html = response.content
+    soup = BeautifulSoup(html, 'html.parser')
+
+    images_urls = [
+        image.get("src").replace("125x85.crop", "765x517")
+        for image in soup.find("div", {"class": "thumbnails"}).find_all("img")
+    ]
+
+    return images_urls
 
 
 def _reconstruct_house(house):
@@ -91,53 +109,56 @@ def _reconstruct_house(house):
     '''
 
     # TODO: Save house images urls
-    new_house = {}
+    processed_house = {}
 
-    new_house['name'] = "{}-{}-{}".format(
+    processed_house['name'] = "{}-{}-{}".format(
         house['region_name'],
         house['section_name'],
         house['fulladdress'],
     )
 
-    new_house['url'] = "{}".format(WEB_URL_FORMAT_STR.format(house['post_id']))
+    processed_house['url'] = "{}".format(WEB_URL_FORMAT_STR.format(house['post_id']))
 
-    new_house['cover_image_url'] = house['cover']
+    processed_house['price'] = "{} {}".format(house['price'], house['unit'])
 
-    new_house['price'] = "{} {}".format(house['price'], house['unit'])
+    processed_house['area'] = "{} 坪".format(house['area'])
 
-    new_house['area'] = "{} 坪".format(house['area'])
+    processed_house['layout'] = "{}".format(house['layout'])
 
-    new_house['layout'] = "{}".format(house['layout'])
+    processed_house['kind'] = "{}".format(house['kind_name'])
 
-    new_house['kind'] = "{}".format(house['kind_name'])
+    processed_house['update_time'] = "{}".format(time.ctime(house['refreshtime']))
 
-    new_house['update_time'] = "{}".format(time.ctime(house['refreshtime']))
+    # lat and lng, images have to be grabed from webpage,
+    # they didn't show on the data queried from API.
+    lat, lng = _get_processed_house_lat_and_lng(house)
+    processed_house['lat'] = lat
+    processed_house['lng'] = lng
 
-    lat, lng = _get_house_lat_and_lng(house)
-    new_house['lat'] = lat
-    new_house['lng'] = lng
+    images_urls = _get_processed_house_images_urls(house)
+    processed_house['images_urls'] = images_urls
 
-    return new_house
+    return processed_house
 
 
 def _reconstruct_houses(houses):
     current_app.logger.info(f"total houses: {len(houses)}")
 
     start = time.time()
-    new_houses = []
+    processed_houses = []
     with concurrent.futures.ProcessPoolExecutor(max_workers=len(houses)) as executor:
         futures = [executor.submit(_reconstruct_house, house) for house in houses]
         for future in concurrent.futures.as_completed(futures):
             try:
-                new_house = future.result()
+                processed_house = future.result()
             except Exception as e:
                 current_app.logger.exeception(e)
             else:
-                new_houses.append(new_house)
+                processed_houses.append(processed_house)
     end = time.time()
     current_app.logger.info(f"_reconstruct_houses() spent: {end - start} seconds")
 
-    return new_houses
+    return processed_houses
 
 
 def _set_csrf_token(session):
